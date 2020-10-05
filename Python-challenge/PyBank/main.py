@@ -28,6 +28,8 @@ for row in budget_data:
 
     print(f"Total:  $ {sum(profloss)}")
 
+#test
+
 #calculate avg change
 
 #output greatest increase in profit
