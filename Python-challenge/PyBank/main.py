@@ -21,12 +21,12 @@ with open(budget_csv) as csv_file:
     print(f"Total Months:  {str(lines)}")
 
 #calcualations
-budget_data = list(budget_csv)
-profloss_sum = 0
-for row in budget_data:
-    profloss = int(row[1])
+#budget_data = list(budget_csv)
+#profloss_sum = 0
+#for row in budget_data:
+ #   profloss = int(row[1])
 
-    print(f"Total:  $ {sum(profloss)}")
+    #print(f"Total:  $ {sum(profloss)}")
 
 #test
 
