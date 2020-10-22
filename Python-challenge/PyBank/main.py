@@ -11,8 +11,9 @@ with open(budget_csv) as csv_file:
     reader = csv.reader(csv_file, delimiter=",")
 
 #Count rows without header
-    csv_header = next(csv_file)
-    lines = len(list(reader))
+    csv_header = next(reader)
+    budget_data = list(reader)
+    lines = len(budget_data)
 
 #print title for output
     print("Financial Analysis")
@@ -20,16 +21,20 @@ with open(budget_csv) as csv_file:
 #print out total months
     print(f"Total Months:  {str(lines)}")
 
-#calcualations
-#budget_data = list(budget_csv)
-#profloss_sum = 0
-#for row in budget_data:
- #   profloss = int(row[1])
+#calcualate net profit/loss
+    profloss_sum = 0
+    for row in budget_data:
+        profloss_sum = profloss_sum + int(row[1])
+    
+    print("total: " + str(profloss_sum))
 
-    #print(f"Total:  $ {sum(profloss)}")
-
-#test
-
+#calculate avg change in profit/loss
+    monthly_change = 0
+    
+    for row in budget_data:
+        profloss_sum = profloss_sum + int(row[1])
+    
+    print("total: " + str(profloss_sum))
 #calculate avg change
 
 #output greatest increase in profit
