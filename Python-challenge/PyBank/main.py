@@ -5,14 +5,14 @@ import os
 import csv
 
 #define path to csv file
-budget_csv = os.path.join('Resources', 'budget_data.csv')
+bd_csv = os.path.join('Resources', 'budget_data.csv')
 
-with open(budget_csv) as csv_file:
-    reader = csv.reader(csv_file, delimiter=",")
+with open(bd_csv) as csv_file:
+    bdreader = csv.reader(csv_file, delimiter=",")
 
 #Count rows without header
-    csv_header = next(reader)
-    budget_data = list(reader)
+    csv_header = next(bdreader)
+    budget_data = list(bdreader)
     lines = len(budget_data)
 
 #print title for output
