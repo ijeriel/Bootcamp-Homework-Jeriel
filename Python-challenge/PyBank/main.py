@@ -45,8 +45,9 @@ with open(bd_csv) as csv_file:
 #calculate avg change
     avg_change = monthly_change / (len(budget_data) -1)
     print("Average Change: " + str(round(avg_change, 2)))
+
 #output greatest increase in profit
-    print(max(changes_list))
+    print("Greatest Increaese in Profits: " + str(max(changes_list)))
 
 #output greatest decrease in profit
-    print(min(changes_list))
+    print("Greatest Decrease in Profits: " + str(min(changes_list)))
