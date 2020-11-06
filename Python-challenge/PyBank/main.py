@@ -26,7 +26,7 @@ with open(bd_csv) as csv_file:
     for row in budget_data:
         profloss_sum = profloss_sum + int(row[1])
     
-    print("total: " + str(profloss_sum))
+    print("Total: " + str(profloss_sum))
 
 #calculate avg change in profit/loss
     monthly_change = 0
@@ -39,12 +39,12 @@ with open(bd_csv) as csv_file:
         monthly_change = monthly_delta + monthly_change
         prior_month = int(row[1])
         changes_list.append(monthly_delta)
-        print(monthly_delta)
+        #print(monthly_delta)
     changes_list.pop(0)
 
 #calculate avg change
     avg_change = monthly_change / (len(budget_data) -1)
-    print(avg_change)
+    print("Average Change: " + str(round(avg_change, 2)))
 #output greatest increase in profit
     print(max(changes_list))
 
