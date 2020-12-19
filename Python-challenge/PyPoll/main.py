@@ -11,10 +11,11 @@ with open(elecdata_csv) as csv_file:
     csvheader = next(ed_reader)
     electdata = list(ed_reader)
     
-    #print(electdata[-1])
+    #total vote count
     total_votes = len(electdata)
     print(len(electdata))
 
+    #get names of candidates
     candidates = []
     for names in electdata:
         name = names[2]
@@ -22,6 +23,7 @@ with open(elecdata_csv) as csv_file:
             candidates.append(name)
     print(candidates)
 
+    #calculate votes per candidate
     vote_count = {}
     for candidate in candidates:
         vote_count[candidate] = 0
@@ -30,6 +32,9 @@ with open(elecdata_csv) as csv_file:
         vote_count[name] = vote_count[name] + 1    
     print(vote_count)
 
+    #vote count percentage
     for votes in vote_count:
         vote_count[votes] = vote_count[votes] / total_votes
     print(vote_count)
+
+    

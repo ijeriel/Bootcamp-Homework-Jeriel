@@ -4,7 +4,7 @@
 import os
 import csv
 
-#define path to csv file
+#define path to csv and export file
 bd_csv = os.path.join('Resources', 'budget_data.csv')
 
 with open(bd_csv) as csv_file:
@@ -42,12 +42,12 @@ with open(bd_csv) as csv_file:
         #print(monthly_delta)
     changes_list.pop(0)
 
-#calculate avg change
+#calculate avg change and print output
     avg_change = monthly_change / (len(budget_data) -1)
     print("Average Change: " + str(round(avg_change, 2)))
 
-#output greatest increase in profit
+#print output greatest increase in profit
     print("Greatest Increaese in Profits: " + str(max(changes_list)))
 
-#output greatest decrease in profit
+#print output greatest decrease in profit
     print("Greatest Decrease in Profits: " + str(min(changes_list)))
