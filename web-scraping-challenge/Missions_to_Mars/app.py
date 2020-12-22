@@ -19,7 +19,7 @@ def scrape():
     mars_data_title = scrape_mars.news_title
     mars_data_news = scrape_mars.news_p
     mars_data_featured_image = scrape_mars.featured_image_url
-    mars_data_facts = scrape_mars.mars_dat
+    mars_data_facts = scrape_mars.marsfacts_html
     mars_data_hemisphere = scrape_mars.hemisphere_image_urls
     mars_data = {"title": mars_data_title, "news": mars_data_news, "featured_image": mars_data_featured_image, "facts": mars_data_facts, "hemisphere": mars_data_hemisphere}
     mars_info.update({}, mars_data, upsert=True)
