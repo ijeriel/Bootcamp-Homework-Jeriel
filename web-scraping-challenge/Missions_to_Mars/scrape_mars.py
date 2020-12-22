@@ -9,12 +9,12 @@ import pandas as pd
 from bs4 import BeautifulSoup as bs
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
-
+import time
 
 # In[2]:
 
 
-get_ipython().system('which chromedriver')
+#get_ipython().system('which chromedriver')
 
 
 # In[3]:
@@ -30,6 +30,7 @@ browser = Browser('chrome', **executable_path, headless=False)
 #NASA Mars News Scrape
 url = 'https://mars.nasa.gov/news/'
 browser.visit(url)
+time.sleep(5)
 
 
 # In[5]:
@@ -42,7 +43,7 @@ soup = bs(html, 'html.parser')
 # In[6]:
 
 
-print(soup.prettify())
+#print(soup.prettify())
 
 
 # In[7]:
@@ -84,7 +85,7 @@ soup = bs(html, 'html.parser')
 # In[12]:
 
 
-print(soup.prettify())
+#print(soup.prettify())
 
 
 # In[13]:
@@ -108,7 +109,7 @@ print(featured_image_url)
 #Mars Facts
 url = 'https://space-facts.com/mars/'
 browser.visit(url)
-
+time.sleep(5)
 
 # In[16]:
 
@@ -120,7 +121,7 @@ soup = bs(html, 'html.parser')
 # In[17]:
 
 
-print(soup.prettify())
+#print(soup.prettify())
 
 
 # In[19]:
@@ -138,14 +139,14 @@ mars
 # In[21]:
 
 
-mars_data = mars[0]
-mars_data
+mars_dat = mars[0]
+mars_dat
 
 
 # In[23]:
 
 
-marsfacts_html = mars_data.to_html(header=False)
+marsfacts_html = mars_dat.to_html(header=False)
 marsfacts_html
 
 
@@ -155,7 +156,7 @@ marsfacts_html
 #Mars Hemispheres
 url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 browser.visit(url)
-
+time.sleep(5)
 
 # In[24]:
 
@@ -167,7 +168,7 @@ soup = bs(html, 'html.parser')
 # In[25]:
 
 
-print(soup.prettify())
+#print(soup.prettify())
 
 
 # In[26]:
@@ -191,7 +192,8 @@ hemisphere_image_urls = [
 hemisphere_image_urls
 
 
-# In[ ]:
+browser.quit()
+
 
 
 
