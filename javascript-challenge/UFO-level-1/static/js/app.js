@@ -20,6 +20,9 @@ data.forEach(function(ufoReport) {
         //append td element to rows
         var cell = row.append("td");
 
+        //add data to object
+        cell.text(value)
+
     })
 
 })
