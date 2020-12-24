@@ -23,6 +23,41 @@ data.forEach(function(ufoReport) {
         //add data to object
         cell.text(value)
 
-    })
+    });
 
-})
+});
+
+//select button
+var button = d3.select("#filter-btn");
+
+//create event handlers
+button.on("click", runEnter);
+form.on("submit", runEnter);
+
+function runEnter() {
+
+    //prevent page from refreshing
+    d3.event.preventDefault();
+
+    //select input element from html
+    var inputElement = d3.select("#datetime");
+
+    //get value property of element
+    var inputValue = inputElement.property("value");
+    console.log(inputValue);
+    console.log(tableData);
+
+    //use form to filter by date
+    var filteredData = tableData.filter(day => day.datetime === inputValue);
+    console.log(filteredData);
+
+
+
+
+
+    
+
+
+
+
+}
