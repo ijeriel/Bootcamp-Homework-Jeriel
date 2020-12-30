@@ -16,17 +16,17 @@ with open(bd_csv) as csv_file:
     lines = len(budget_data)
 
 #print title for output
-    print("Financial Analysis")
-    print("--------------------------")
+    # print("Financial Analysis")
+    # print("--------------------------")
 #print out total months
-    print(f"Total Months:  {str(lines)}")
+    # print(f"Total Months:  {str(lines)}")
 
 #calcualate net profit/loss
     profloss_sum = 0
     for row in budget_data:
         profloss_sum = profloss_sum + int(row[1])
     
-    print("Total: " + str(profloss_sum))
+    # print("Total: " + str(profloss_sum))
 
 #calculate avg change in profit/loss
     monthly_change = 0
@@ -44,10 +44,20 @@ with open(bd_csv) as csv_file:
 
 #calculate avg change and print output
     avg_change = monthly_change / (len(budget_data) -1)
-    print("Average Change: " + str(round(avg_change, 2)))
+    # print("Average Change: " + str(round(avg_change, 2)))
 
 #print output greatest increase in profit
-    print("Greatest Increaese in Profits: " + str(max(changes_list)))
+    # print("Greatest Increaese in Profits: " + str(max(changes_list)))
 
 #print output greatest decrease in profit
+    # print("Greatest Decrease in Profits: " + str(min(changes_list)))
+
+
+#print analysis
+    print("Financial Analysis")
+    print("--------------------------")
+    print(f"Total Months:  {str(lines)}")
+    print("Total: " + str(profloss_sum))
+    print("Average Change: " + str(round(avg_change, 2)))
+    print("Greatest Increaese in Profits: " + str(max(changes_list)))
     print("Greatest Decrease in Profits: " + str(min(changes_list)))
