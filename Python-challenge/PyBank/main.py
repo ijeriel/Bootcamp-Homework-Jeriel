@@ -4,7 +4,7 @@
 import os
 import csv
 
-#define path to csv and export file
+#define path to csv
 bd_csv = os.path.join('Resources', 'budget_data.csv')
 
 with open(bd_csv) as csv_file:
@@ -53,7 +53,8 @@ with open(bd_csv) as csv_file:
     # print("Greatest Decrease in Profits: " + str(min(changes_list)))
 
 
-#print analysis
+#print statements
+
     print("Financial Analysis")
     print("--------------------------")
     print(f"Total Months:  {str(lines)}")
@@ -61,3 +62,22 @@ with open(bd_csv) as csv_file:
     print("Average Change: " + str(round(avg_change, 2)))
     print("Greatest Increaese in Profits: " + str(max(changes_list)))
     print("Greatest Decrease in Profits: " + str(min(changes_list)))
+
+#print statements to text file
+pybank_output = os.path.join("analysis.txt")
+
+with open(pybank_output, 'w') as text:
+
+    text.write("Financial Analysis\n")
+    text.write("--------------------------\n")
+    text.write(f"Total Months:  {str(lines)}\n")
+    text.write("Total: " + str(profloss_sum))
+    text.write("\nAverage Change: " + str(round(avg_change, 2)))
+    text.write("\nGreatest Increaese in Profits: " + str(max(changes_list)))
+    text.write("\nGreatest Decrease in Profits: " + str(min(changes_list)))
+
+
+
+
+
+
