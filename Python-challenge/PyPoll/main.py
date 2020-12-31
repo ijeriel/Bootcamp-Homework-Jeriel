@@ -46,8 +46,19 @@ with open(elecdata_csv) as csv_file:
     print("Winner:  " + (winner))
     print("--------------------------")
 
-    
+#output to text file    
+pypoll_output = os.path.join("analysis.txt")
 
+with open(pypoll_output, 'w') as text:
+
+    text.write("Election Results\n")
+    text.write("--------------------------\n")
+    text.write("Total Votes: " + str(len(electdata)))
+    text.write("\n--------------------------\n")
+    text.write(str(vote_count))
+    text.write("\n--------------------------")
+    text.write("\nWinner:  " + (winner))
+    text.write("\n--------------------------")
 
 
     
