@@ -13,7 +13,10 @@ with open(elecdata_csv) as csv_file:
     
     #total vote count
     total_votes = len(electdata)
-    print(len(electdata))
+    print("Election Results")
+    print("--------------------------")
+    print("Total Votes: " + str(len(electdata)))
+    print("--------------------------")
 
     #get names of candidates
     candidates = []
@@ -21,7 +24,7 @@ with open(elecdata_csv) as csv_file:
         name = names[2]
         if name not in candidates:
             candidates.append(name)
-    print(candidates)
+    # print(candidates)
 
     #calculate votes per candidate
     vote_count = {}
@@ -37,9 +40,11 @@ with open(elecdata_csv) as csv_file:
         vote_count[votes] = round((vote_count[votes] / total_votes)*100,3)
     print(vote_count)
 
-    # winner = max(vote_count.values())
+    # winner result
     winner = max(vote_count, key=vote_count.get)
+    print("--------------------------")
     print("Winner:  " + (winner))
+    print("--------------------------")
 
     
 
