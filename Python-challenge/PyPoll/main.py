@@ -34,7 +34,9 @@ with open(elecdata_csv) as csv_file:
 
     #vote count percentage
     for votes in vote_count:
-        vote_count[votes] = vote_count[votes] / total_votes
+        vote_count[votes] = round((vote_count[votes] / total_votes)*100,3)
     print(vote_count)
+
+    
 
     
