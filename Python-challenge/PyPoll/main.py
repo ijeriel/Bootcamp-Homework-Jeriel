@@ -37,6 +37,12 @@ with open(elecdata_csv) as csv_file:
         vote_count[votes] = round((vote_count[votes] / total_votes)*100,3)
     print(vote_count)
 
+    # winner = max(vote_count.values())
+    winner = max(vote_count, key=vote_count.get)
+    print("Winner:  " + (winner))
+
     
+
+
 
     
