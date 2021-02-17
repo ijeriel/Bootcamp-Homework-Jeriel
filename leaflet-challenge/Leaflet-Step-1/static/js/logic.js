@@ -6,8 +6,8 @@ function markerSize(magnitude) {
     return magnitude * 7;
   }
   
-  //Define colorScale
-  function colorScale(magnitude) {
+  //Define magnitude colors
+  function colorMag(magnitude) {
     return magnitude >= 5 ? '#6214F5':
            magnitude >= 4 ? '#B514F5':
            magnitude >= 3 ? '#F705AB':
@@ -15,22 +15,18 @@ function markerSize(magnitude) {
            magnitude >= 1 ? '#07DDF5':
                             '#28EDB2';
   }
-  
-   
+     
   function createFeatures(earthquakeData) {
     
-    // Function for feature pop-up
+    //Function for pop up text box
     function popUpText(feature, layer) {
-      layer.bindPopup("<h3>" + feature.properties.place +
-        "</h3><hr><p>" + new Date(feature.properties.time) + "</p>" +
-        "<p>Magnitude: " + feature.properties.mag + "</p>" +
-        "<p>Type: " + feature.properties.type + "</p>");
+      layer.bindPopup("<h3>" + feature.properties.place + "</h3><hr>" + new Date(feature.properties.time) + "<h3>Magnitude: " + feature.properties.mag + "</h3>");
     }
     
-    // Basic marker features
+    //Default marker options
     var baseMarkerOptions = {
-      color: '#2F2F2F',
-      weight: 1,
+      color: '#000000',
+      weight: 0.5,
       fillOpacity: 0.7
     }
   
@@ -42,17 +38,17 @@ function markerSize(magnitude) {
       style: function(feature) {
         return {
           radius: markerSize(feature.properties.mag),
-          fillColor: colorScale(feature.properties.mag)
+          fillColor: colorMag(feature.properties.mag)
         }
       },
       onEachFeature: popUpText
     });
   
-    // Send earthquake layer to the createMap function
+    //Send earthquake layer to the createMap function
     createMap(earthquakes);
   }
   
-  // GET request for JSON data
+  //GET request for JSON data
   d3.json(queryUrl, function(data) {
     createFeatures(data.features);
   });
@@ -69,8 +65,8 @@ function markerSize(magnitude) {
       });
     
     
-      // Create our map, giving it the streetmap and earthquakes layers on load
-      var myMap = L.map("map", {
+      //Create map, giving it the streetmap and earthquakes layers on load
+      var quakeMap = L.map("map", {
         //Center map to Eugene, OR
         center: [
           44.05, -123.09
@@ -79,26 +75,24 @@ function markerSize(magnitude) {
         layers: [streetmap, earthquakes]
       });
   
-
+    //Create legend
     var legend = L.control({position: 'bottomright'});
     legend.onAdd = function() {
     
-    //create legend
     var div = L.DomUtil.create('div', 'legend');
   
-    //add labels for legend
+    //Labels
     var labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
-    var grades = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5];
+    var mag = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5];
   
     //HTML for legend
-    div.innerHTML = '<div><strong>Magnitude</strong></div>';
-    for(var i = 0; i < grades.length; i++) {
-        div.innerHTML += '<i style = "background:' + colorScale(grades[i]) + '">&nbsp;</i>&nbsp;&nbsp;'
-        + labels[i] + '<br/>';
+    div.innerHTML = '<div><strong>Earthquake Magnitude</strong></div>';
+    for(var i = 0; i < mag.length; i++) {
+        div.innerHTML += '<i style = "background:' + colorMag(mag[i]) + '">&nbsp;</i>&nbsp;&nbsp;' + labels[i] + '<br/>';
       };
       return div;
     };
   
-    legend.addTo(myMap);
+    legend.addTo(quakeMap);
   
    }
