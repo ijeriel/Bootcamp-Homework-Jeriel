@@ -2,18 +2,18 @@
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 
 //Define markerSize
-function markerSize(magnitude) {
-    return magnitude * 7;
+function markerSize(depth) {
+    return depth * 7;
   }
   
-  //Define magnitude colors
-  function colorMag(magnitude) {
-    return magnitude >= 5 ? '#6214F5':
-           magnitude >= 4 ? '#B514F5':
-           magnitude >= 3 ? '#F705AB':
-           magnitude >= 2 ? '#F2AADB':
-           magnitude >= 1 ? '#07DDF5':
-                            '#28EDB2';
+  //Define magnitude(depth) colors
+  function colorMag(depth) {
+    return depth >= 5 ? '#6214F5':
+           depth >= 4 ? '#B514F5':
+           depth >= 3 ? '#F705AB':
+           depth >= 2 ? '#F2AADB':
+           depth >= 1 ? '#07DDF5':
+                        '#28EDB2';
   }
      
   function createFeatures(earthquakeData) {
