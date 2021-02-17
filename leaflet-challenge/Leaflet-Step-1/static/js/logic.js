@@ -1,5 +1,7 @@
 //queryUrl with API endpoint
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+//for later
+// var tectonicplates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
 //Define markerSize
 function markerSize(depth) {
@@ -30,7 +32,7 @@ function markerSize(depth) {
       fillOpacity: 0.7
     }
   
-    //GeoJson layer containing the features array on the earthquakeData object***
+    //GeoJson layer containing the features array on the earthquakeData object
     var earthquakes = L.geoJSON(earthquakeData, {
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, baseMarkerOptions);
@@ -78,21 +80,18 @@ function markerSize(depth) {
     //Create legend
     var legend = L.control({position: 'bottomright'});
     legend.onAdd = function() {
-    
     var div = L.DomUtil.create('div', 'legend');
-  
-    //Labels
     var labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
     var mag = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5];
   
-    //HTML for legend
+    //HTML legend
     div.innerHTML = '<div><strong>Earthquake Magnitude</strong></div>';
     for(var i = 0; i < mag.length; i++) {
         div.innerHTML += '<i style = "background:' + colorMag(mag[i]) + '">&nbsp;</i>&nbsp;&nbsp;' + labels[i] + '<br/>';
       };
       return div;
     };
-  
+    
     legend.addTo(quakeMap);
   
    }
