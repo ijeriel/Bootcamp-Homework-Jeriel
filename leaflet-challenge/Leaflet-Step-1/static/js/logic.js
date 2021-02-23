@@ -69,11 +69,11 @@ function markerSize(depth) {
     
       //Create map, giving it the streetmap and earthquakes layers on load
       var quakeMap = L.map("map", {
-        //Center map to Eugene, OR
+        //Center map to Boise, ID
         center: [
-          44.05, -123.09
+          44.05, -116.20
         ],
-        zoom: 4.0,
+        zoom: 4.25,
         layers: [streetmap, earthquakes]
       });
   
