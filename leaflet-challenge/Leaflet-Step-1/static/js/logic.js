@@ -2,13 +2,26 @@
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 //for later
 // var tectonicplates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+     
+function createFeatures(earthquakeData) {
+    
+  //Function for pop up text box
+  function popUpText(feature, layer) {
+    layer.bindPopup("<h3>" + feature.properties.place + "</h3><hr>" + new Date(feature.properties.time) + "<h3>Magnitude: " + feature.properties.mag + "</h3>");
+  }
+    
+  //Default marker options
+  var baseMarkerOptions = {
+    color: '#000000',
+    weight: 0.5,
+    fillOpacity: 0.7    }
 
-//Define markerSize
-function markerSize(depth) {
+  //Define markerSize
+  function markerSize(depth) {
     return depth * 7;
   }
-  
-  //Define magnitude(depth) colors
+
+//Define magnitude(depth) colors
   function colorMag(depth) {
     return depth >= 5 ? '#6214F5':
            depth >= 4 ? '#B514F5':
@@ -17,37 +30,23 @@ function markerSize(depth) {
            depth >= 1 ? '#07DDF5':
                         '#28EDB2';
   }
-     
-  function createFeatures(earthquakeData) {
-    
-    //Function for pop up text box
-    function popUpText(feature, layer) {
-      layer.bindPopup("<h3>" + feature.properties.place + "</h3><hr>" + new Date(feature.properties.time) + "<h3>Magnitude: " + feature.properties.mag + "</h3>");
-    }
-    
-    //Default marker options
-    var baseMarkerOptions = {
-      color: '#000000',
-      weight: 0.5,
-      fillOpacity: 0.7
-    }
   
-    //GeoJson layer containing the features array on the earthquakeData object
-    var earthquakes = L.geoJSON(earthquakeData, {
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, baseMarkerOptions);
-      }, 
-      style: function(feature) {
-        return {
-          radius: markerSize(feature.properties.mag),
-          fillColor: colorMag(feature.properties.mag)
-        }
-      },
-      onEachFeature: popUpText
-    });
+  //GeoJson layer containing the features array on the earthquakeData object
+  var earthquakes = L.geoJSON(earthquakeData, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, baseMarkerOptions);
+    }, 
+    style: function(feature) {
+      return {
+        radius: markerSize(feature.properties.mag),
+        fillColor: colorMag(feature.properties.mag)
+      }
+    },
+    onEachFeature: popUpText
+  });
   
-    //Send earthquake layer to the createMap function
-    createMap(earthquakes);
+  //Send earthquake layer to the createMap function
+  createMap(earthquakes);
   }
   
   //GET request for JSON data
