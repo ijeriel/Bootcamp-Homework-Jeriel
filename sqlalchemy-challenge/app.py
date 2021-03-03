@@ -90,13 +90,30 @@ def tobs():
     session = Session(engine)
 
     # Query for most active station
-    busiest = session.query(measurement.station,func.min(measurement.tobs),func.max(measurement.tobs),func.round(func.avg(measurement.tobs),2)).\
-        group_by(measurement.station).\
-        order_by(func.count(measurement.station).desc()).first()
+    last12 = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    busiest = session.query(measurement.date, measurement.tobs).\
+        filter(measurement.station == 'USC00519281').\
+        filter(measurement.date >= last12).all()
 
     tobs_list = list(np.ravel(busiest))
 
     return jsonify(tobs_list)
+
+@app.route("/api/v1.0/start")
+def start():
+    # Create our session (link)
+    session = Session(engine)
+
+    # Query min, avg, max
+    min_max = session.query(measurement.station,func.min(measurement.tobs),func.max(measurement.tobs),func.round(func.avg(measurement.tobs),2)).\
+        group_by(measurement.station).\
+        order_by(func.count(measurement.station).desc()).first()
+
+    min_avg_max = list(np.ravel(min_max))
+
+    return jsonify(min_avg_max)
+
+
 
     
 
